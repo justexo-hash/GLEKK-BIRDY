@@ -1,0 +1,543 @@
+/* Custom GLEKK Styles - Mobile Optimized */
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #000;
+}
+
+/* Fix hero section padding to account for fixed nav */
+#home {
+  background-attachment: scroll; /* Changed from fixed for better mobile performance */
+  padding-top: 4rem; /* Add padding to prevent content overlap with nav */
+}
+
+/* Mobile-friendly background attachment */
+@media (min-width: 768px) {
+  #home {
+    background-attachment: fixed;
+  }
+}
+
+/* Prevent background movement on other sections */
+section {
+  background-attachment: scroll;
+}
+
+@media (min-width: 768px) {
+  section {
+    background-attachment: fixed;
+  }
+}
+
+/* Fix copy button positioning */
+#copy-address-btn {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Ensure button stays in place during animations */
+#copy-address-btn.copied {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Custom Button Styles - Enhanced for Mobile */
+.glekk-btn-primary {
+  background: linear-gradient(135deg, #9ACD32, #FFD700);
+  color: #000;
+  font-weight: bold;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(154, 205, 50, 0.3);
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation; /* Improve touch responsiveness */
+  user-select: none;
+  position: relative;
+}
+
+.glekk-btn-primary:hover,
+.glekk-btn-primary:active {
+  background: linear-gradient(135deg, #FFD700, #9ACD32);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(154, 205, 50, 0.5);
+}
+
+.glekk-btn-secondary {
+  background: transparent;
+  color: #9ACD32;
+  font-weight: bold;
+  border: 2px solid #9ACD32;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  position: relative;
+}
+
+.glekk-btn-secondary:hover,
+.glekk-btn-secondary:active {
+  background: #9ACD32;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(154, 205, 50, 0.3);
+}
+
+.glekk-btn-outline {
+  background: transparent;
+  color: #FFD700;
+  font-weight: bold;
+  border: 2px solid #FFD700;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  position: relative;
+}
+
+.glekk-btn-outline:hover,
+.glekk-btn-outline:active {
+  background: #FFD700;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+/* Mobile-specific button adjustments */
+@media (max-width: 768px) {
+  .glekk-btn-primary,
+  .glekk-btn-secondary,
+  .glekk-btn-outline {
+    min-height: 48px; /* Ensure touch-friendly size */
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    min-width: 120px; /* Ensure buttons are wide enough */
+  }
+  
+  /* Reduce hover effects on mobile for better performance */
+  .glekk-btn-primary:hover,
+  .glekk-btn-secondary:hover,
+  .glekk-btn-outline:hover {
+    transform: none;
+  }
+}
+
+/* Glitch Text Effect - Optimized for Mobile */
+.glitch-text {
+  position: relative;
+  text-shadow: 
+    0.05em 0 0 #00fffc, 
+    -0.03em -0.04em 0 #fc00ff,
+    0.025em 0.04em 0 #fffc00;
+  animation: glitch 725ms infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch 500ms infinite;
+  color: #00fffc;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch 375ms infinite;
+  color: #fc00ff;
+  z-index: -2;
+}
+
+/* Reduce glitch animation intensity on mobile for better performance */
+@media (max-width: 768px) {
+  .glitch-text {
+    animation-duration: 1500ms;
+  }
+  
+  .glitch-text::before {
+    animation-duration: 1000ms;
+  }
+  
+  .glitch-text::after {
+    animation-duration: 800ms;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 
+      0.05em 0 0 #00fffc, 
+      -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+  }
+  15% {
+    text-shadow: 
+      0.05em 0 0 #00fffc, 
+      -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+  }
+  16% {
+    text-shadow: 
+      -0.05em -0.025em 0 #00fffc, 
+      0.025em 0.035em 0 #fc00ff,
+      -0.05em -0.05em 0 #fffc00;
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 #00fffc, 
+      0.025em 0.035em 0 #fc00ff,
+      -0.05em -0.05em 0 #fffc00;
+  }
+  50% {
+    text-shadow: 
+      0.05em 0.035em 0 #00fffc, 
+      0.03em 0 0 #fc00ff,
+      0 -0.04em 0 #fffc00;
+  }
+  99% {
+    text-shadow: 
+      0.05em 0.035em 0 #00fffc, 
+      0.03em 0 0 #fc00ff,
+      0 -0.04em 0 #fffc00;
+  }
+  100% {
+    text-shadow: 
+      0.05em 0 0 #00fffc, 
+      -0.03em -0.04em 0 #fc00ff,
+      0.025em 0.04em 0 #fffc00;
+  }
+}
+
+/* Floating Animation - Optimized */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Reduce animation intensity on mobile */
+@media (max-width: 768px) {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-float {
+    animation-duration: 4s;
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ACD32;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD700;
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* Game Modal Styles - Mobile Optimized */
+#game-modal {
+  backdrop-filter: blur(10px);
+}
+
+#game-modal .relative {
+  position: relative;
+}
+
+#close-game-btn {
+  z-index: 100 !important;
+  position: absolute !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+#restart-game-btn {
+  z-index: 100 !important;
+  position: relative !important;
+  min-width: 120px !important;
+  min-height: 48px !important;
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 768px) {
+  #game-modal .relative {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+  
+  #phaser-container {
+    height: 50vh !important;
+    min-height: 300px !important;
+  }
+  
+  #close-game-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    top: 8px !important;
+    right: 8px !important;
+  }
+  
+  #restart-game-btn {
+    font-size: 16px !important;
+    padding: 12px 24px !important;
+  }
+}
+
+/* Gallery Loading */
+#gallery-loading {
+  animation: pulse 2s infinite;
+}
+
+/* Mobile Navigation Styles - Enhanced */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+#mobile-menu.show {
+  max-height: 500px; /* Increased for social icons */
+}
+
+/* Mobile menu button enhanced */
+#mobile-menu-btn {
+  z-index: 60 !important;
+  position: relative !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Social icons in mobile menu */
+#mobile-menu .flex.space-x-4 {
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#mobile-menu .flex.space-x-4 > a {
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+/* Particle Effects */
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Reduce particle effects on mobile for better performance */
+@media (max-width: 768px) {
+  #confetti-canvas {
+    opacity: 0.7;
+  }
+}
+
+/* Section Transitions */
+section {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Copy Button Animation */
+#copy-address-btn.copied {
+  background: #9ACD32;
+  color: #000;
+}
+
+/* Number Circle - Mobile Optimized */
+.number-circle {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #000;
+  background: #9ACD32;
+  border-radius: 9999px;
+  padding: 0;
+}
+
+@media (max-width: 640px) {
+  .number-circle {
+    min-width: 2rem;
+    min-height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce font sizes for better mobile readability */
+  .text-6xl { font-size: 3rem; }
+  .text-7xl { font-size: 3.5rem; }
+  .text-8xl { font-size: 4rem; }
+  .text-9xl { font-size: 4.5rem; }
+  
+  /* Ensure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Better spacing on mobile */
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Improve touch targets */
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent zoom on input focus (iOS Safari) */
+input[type="text"] {
+  font-size: 16px;
+}
+
+/* Smooth animations with reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Fix iOS Safari viewport units */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Enhanced mobile touch states */
+.touch-active {
+  transform: scale(0.98) !important;
+  opacity: 0.8 !important;
+}
+
+/* Game overlay fixes */
+#game-overlay {
+  pointer-events: auto !important;
+  z-index: 50 !important;
+}
+
+#game-overlay button {
+  pointer-events: auto !important;
+  z-index: 60 !important;
+  position: relative !important;
+}
+
+/* Lightbox mobile optimizations */
+.lightbox-container {
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Navigation transition fix */
+nav {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Better mobile menu visibility */
+@media (max-width: 768px) {
+  #mobile-menu {
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  #mobile-menu .px-4 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+

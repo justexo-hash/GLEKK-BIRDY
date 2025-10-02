@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from glekkbird.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Oct 2025 18:30:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLEKK • Tennis Ball Bird Coin</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/"></script>
+  
+  <!-- Phaser 3 for Game -->
+  <script src="../cdnjs.cloudflare.com/ajax/libs/phaser/3.80.0/phaser.min.js"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'glekk-green': '#9ACD32',
+            'glekk-yellow': '#FFD700',
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'bounce-slow': 'bounce 2s infinite',
+            'pulse-slow': 'pulse 3s infinite',
+            'glitch': 'glitch 2s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            glitch: {
+              '0%': { transform: 'translate(0)' },
+              '20%': { transform: 'translate(-2px, 2px)' },
+              '40%': { transform: 'translate(-2px, -2px)' },
+              '60%': { transform: 'translate(2px, 2px)' },
+              '80%': { transform: 'translate(2px, -2px)' },
+              '100%': { transform: 'translate(0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-glekk-green/20">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="text-2xl md:text-3xl font-black text-glekk-yellow glitch-text" data-text="GLEKK">GLEKK</div>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="block sm:hidden text-white hover:text-glekk-green transition-colors z-50 relative">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden sm:flex space-x-7 sm:ml-8">
+        <a href="#home" class="hover:text-glekk-green transition-colors duration-300">Home</a>
+        <a href="#about" class="hover:text-glekk-green transition-colors duration-300">About</a>
+        <a href="#game" class="hover:text-glekk-green transition-colors duration-300">Game</a>
+        <a href="#gallery" class="hover:text-glekk-green transition-colors duration-300">Gallery</a>
+        <a href="#buy" class="hover:text-glekk-green transition-colors duration-300">Buy</a>
+        <a href="#community" class="hover:text-glekk-green transition-colors duration-300">Community</a>
+      </div>
+      
+      <!-- Social Icons -->
+      <div class="hidden sm:flex space-x-4">
+        <a href="https://x.com/" class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center hover:bg-glekk-yellow transition-colors">
+          <img src="assets/icons/x.svg" alt="X" class="w-4 h-4" onerror="this.style.display='none'">
+
+        </a>
+        <a href="https://www.reddit.com/r/glekk/" class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center hover:bg-glekk-yellow transition-colors">
+          <img src="assets/icons/reddit.svg" alt="Reddit" class="w-6 h-6" onerror="this.style.display='none'">
+
+        </a>
+        <a href="#" class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center hover:bg-glekk-yellow transition-colors">
+          <img src="assets/icons/dexscreener.svg" alt="DexScreener" class="w-6 h-6" onerror="this.style.display='none'">
+
+        </a>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="sm:hidden bg-black/95 backdrop-blur-md border-t border-glekk-green/20 hidden overflow-hidden transition-all duration-300 ease-in-out">
+      <div class="px-4 py-4 space-y-4">
+        <a href="#home" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">Home</a>
+        <a href="#about" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">About</a>
+        <a href="#game" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">Game</a>
+        <a href="#gallery" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">Gallery</a>
+        <a href="#buy" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">Buy</a>
+        <a href="#community" class="block hover:text-glekk-green transition-colors mobile-menu-link py-2">Community</a>
+        
+        <!-- Mobile Social Links -->
+        <div class="pt-4 border-t border-glekk-green/20">
+          <p class="text-gray-400 text-sm mb-3">Follow GLEKK</p>
+          <div class="flex space-x-4">
+            <a href="https://x.com/" class="flex items-center space-x-2 text-glekk-green hover:text-glekk-yellow transition-colors py-2">
+              <div class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center">
+                <img src="assets/icons/x.svg" alt="X" class="w-4 h-4" onerror="this.style.display='none'">
+              </div>
+              <span>X</span>
+            </a>
+            <a href="https://www.reddit.com/r/glekk/" class="flex items-center space-x-2 text-glekk-green hover:text-glekk-yellow transition-colors py-2">
+              <div class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center">
+                <img src="assets/icons/reddit.svg" alt="Reddit" class="w-6 h-6" onerror="this.style.display='none'">
+              </div>
+              <span>Reddit</span>
+            </a>
+            <a href="#" class="flex items-center space-x-2 text-glekk-green hover:text-glekk-yellow transition-colors py-2">
+              <div class="w-8 h-8 bg-glekk-green rounded-full flex items-center justify-center">
+                <img src="assets/icons/dexscreener.svg" alt="DexScreener" class="w-6 h-6" onerror="this.style.display='none'">
+              </div>
+              <span>DEX</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative pt-16" 
+           style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/cloud-bg.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+    
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas" class="absolute inset-0 pointer-events-none"></canvas>
+    
+    <div class="text-center z-10 px-4 max-w-4xl mx-auto">
+      <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-6 glitch-text text-glekk-yellow" data-text="GLEKK">GLEKK</h1>
+      
+      <p class="text-lg sm:text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
+        Tennis Bird Glekk.<br>
+        That's it
+      </p>
+      
+      <!-- Main Character Image -->
+      <div class="mb-8 md:mb-12">
+        <img src="assets/glekk-grass.png" alt="GLEKK - Tennis Ball Bird" 
+             class="mx-auto w-64 sm:w-80 md:w-96 lg:w-auto max-w-lg animate-float drop-shadow-2xl"
+             onerror="this.style.display='none'">
+      </div>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+        <button id="play-game-btn" class="glekk-btn-primary text-lg md:text-xl px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto">
+          🎮 Play GLEKK Game
+        </button>
+        <a href="#buy" class="glekk-btn-secondary text-lg md:text-xl px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto text-center">
+          💰 Buy $GLEKK
+        </a>
+        <a href="#community" class="glekk-btn-outline text-lg md:text-xl px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto text-center">
+          👥 Join the Flock
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built by Professionals Section -->
+  <section id="about" class="py-16 md:py-20 bg-gradient-to-b from-black to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      
+      <div class="order-2 md:order-1">
+        <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-glekk-yellow">
+          Built by Professionals
+          <span class="text-sm md:text-lg text-gray-400 block mt-2">(kinda)</span>
+        </h2>
+        
+        <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
+          Five highly qualified, definitely real executives steering this rocket ship. 
+          We've got MBAs, probably. Our suits are expensive. Trust us.
+        </p>
+        
+        <a href="#buy" class="glekk-btn-primary text-lg md:text-xl px-6 py-3 md:px-8 md:py-4 inline-block">
+          Start Your Position →
+        </a>
+      </div>
+      
+      <div class="order-1 md:order-2">
+        <img src="assets/glekk-suits.png" alt="GLEKK Corporate Team" 
+             class="w-full max-w-lg mx-auto animate-pulse-slow"
+             onerror="this.style.display='none'">
+      </div>
+    </div>
+    
+    <!-- Section Divider -->
+    <div class="w-full h-1 bg-gradient-to-r from-transparent via-glekk-green to-transparent mt-16 md:mt-20"></div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game" class="py-16 md:py-20 bg-gradient-to-b from-gray-900 to-green-900">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-glekk-yellow">FLAPPY GLEKKBIRD</h2>
+      
+      <p class="text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto">
+        Navigate through the chaos. Avoid the pipes. Don't die. 
+        It's harder than our tokenomics.
+      </p>
+      
+      <button id="launch-game-btn" class="glekk-btn-primary text-xl md:text-2xl px-8 py-4 md:px-12 md:py-6 mb-8 animate-bounce-slow">
+        🚀 Launch Game
+      </button>
+      
+      <div class="text-gray-400 text-sm md:text-base">
+        <p>🎮 Click or Space to flap • 🏆 Beat your high score • 💀 Floor kills you</p>
+      </div>
+    </div>
+    
+    <!-- Section Divider -->
+    <div class="w-full h-1 bg-gradient-to-r from-transparent via-glekk-green to-transparent mt-16 md:mt-20"></div>
+  </section>
+
+  <!-- How to Buy -->
+  <section id="buy" class="py-16 md:py-20 bg-black">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-8 md:mb-12 text-glekk-yellow">HOW TO BUY</h2>
+      <h3 class="text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 text-glekk-yellow">Let's keep it SIMPLE</h3>
+      
+      <div class="space-y-6 md:space-y-8 text-left max-w-2xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-900/50 rounded-xl p-4 md:p-6">
+          <div class="number-circle flex-shrink-0 mx-auto sm:mx-0">1</div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-lg md:text-xl font-bold text-glekk-green mb-2">Get a Wallet</h3>
+            <p class="text-gray-300 text-sm md:text-base">Install the Phantom wallet app on your browser or mobile device — it's free and quick to create an account.</p>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-900/50 rounded-xl p-4 md:p-6">
+          <div class="number-circle flex-shrink-0 mx-auto sm:mx-0">2</div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-lg md:text-xl font-bold text-glekk-green mb-2">Fund Your Wallet</h3>
+            <p class="text-gray-300 text-sm md:text-base">Fund your wallet with Solana ($SOL) by purchasing it directly within the Phantom app or transferring it from another wallet.</p>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-900/50 rounded-xl p-4 md:p-6">
+          <div class="number-circle flex-shrink-0 mx-auto sm:mx-0">3</div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-lg md:text-xl font-bold text-glekk-green mb-2">Swap for $GLEKK</h3>
+            <p class="text-gray-300 text-sm md:text-base">Use the Phantom wallet to find and buy $GLEKK. You can do this by typing the token name in the search bar, using the contract address, or scanning the QR code.</p>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 bg-gray-900/50 rounded-xl p-4 md:p-6">
+          <div class="number-circle flex-shrink-0 mx-auto sm:mx-0">4</div>
+          <div class="text-center sm:text-left">
+            <h3 class="text-lg md:text-xl font-bold text-glekk-green mb-2">Join the Chaos</h3>
+            <p class="text-gray-300 text-sm md:text-base">Welcome to the flock! Get active within the community</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contract Address -->
+      <div class="mt-8 md:mt-12 bg-gray-900 rounded-xl p-4 md:p-6 max-w-2xl mx-auto">
+        <h3 class="text-lg md:text-xl font-bold text-glekk-green mb-4">Contract Address</h3>
+        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+          <input type="text" id="contract-address" 
+                 value="SOON" 
+                 readonly 
+                 class="flex-1 bg-black text-white rounded-lg px-4 py-2 border border-glekk-green/30 text-sm md:text-base w-full">
+          <button id="copy-address-btn" class="glekk-btn-secondary px-4 py-2 md:px-6 md:py-2 text-sm md:text-base w-full sm:w-auto">Copy</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Section Divider -->
+    <div class="w-full h-1 bg-gradient-to-r from-transparent via-glekk-green to-transparent mt-16 md:mt-20"></div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-16 md:py-20 bg-gradient-to-b from-black to-gray-900">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-8 md:mb-12 text-glekk-yellow">GLEKK GALLERY</h2>
+      
+      <p class="text-lg md:text-xl text-gray-400 mb-8">Community creations from r/glekk</p>
+      
+      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <!-- Gallery images will be loaded here by JavaScript -->
+      </div>
+      
+      <div id="gallery-loading" class="text-glekk-green text-lg md:text-xl">Loading gallery...</div>
+    </div>
+    
+    <!-- Section Divider -->
+    <div class="w-full h-1 bg-gradient-to-r from-transparent via-glekk-green to-transparent mt-16 md:mt-20"></div>
+  </section>
+
+  <!-- Community -->
+  <section id="community" class="py-16 md:py-20 bg-black text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 md:mb-8 text-glekk-yellow">JOIN THE FLOCK</h2>
+      
+      <p class="text-lg md:text-xl text-gray-400 mb-8 md:mb-12">
+        Connect with fellow GLEKK enthusiasts and stay updated on the latest chaos.
+      </p>
+      
+      <div class="flex justify-center space-x-6 md:space-x-8 mb-8 md:mb-12">
+        <a href="https://x.com/" class="group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-glekk-green rounded-2xl flex items-center justify-center group-hover:bg-glekk-yellow transition-colors">
+            <img src="assets/icons/x.svg" alt="X" class="w-5 h-5" onerror="this.style.display='none'">
+          </div>
+          <p class="mt-2 text-gray-400 text-sm md:text-base">X</p>
+        </a>
+        
+        <a href="https://www.reddit.com/r/glekk/" class="group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-glekk-green rounded-2xl flex items-center justify-center group-hover:bg-glekk-yellow transition-colors">
+            <img src="assets/icons/reddit.svg" alt="Reddit" class="w-8 h-8" onerror="this.style.display='none'">
+          </div>
+          <p class="mt-2 text-gray-400 text-sm md:text-base">Reddit</p>
+        </a>
+        
+        <a href="#" class="group">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-glekk-green rounded-2xl flex items-center justify-center group-hover:bg-glekk-yellow transition-colors">
+            <img src="assets/icons/dexscreener.svg" alt="DexScreener" class="w-8 h-8" onerror="this.style.display='none'">
+
+          </div>
+          <p class="mt-2 text-gray-400 text-sm md:text-base">DEX</p>
+        </a>
+      </div>
+      
+      <p class="text-gray-500 text-sm md:text-base">© 2025 GLEKK. No promises. Only memes. Much chaos.</p>
+    </div>
+  </section>
+
+  <!-- Game Modal -->
+  <div id="game-modal" class="fixed inset-0 bg-black/90 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="relative w-full max-w-4xl bg-gray-900 rounded-2xl shadow-2xl p-4 md:p-6 border border-glekk-green/30 max-h-[90vh] overflow-hidden">
+      <button id="close-game-btn" class="absolute top-2 right-2 md:top-4 md:right-4 text-white hover:text-glekk-green text-2xl md:text-3xl font-bold z-20 bg-black/50 rounded-full w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">×</button>
+      
+      <div id="phaser-container" class="w-full bg-black rounded-xl overflow-hidden" style="height: 60vh; min-height: 400px;"></div>
+      
+      <!-- Game Overlay -->
+      <div id="game-overlay" class="absolute inset-0 bg-black/80 hidden flex flex-col items-center justify-center text-center rounded-2xl p-4 z-10">
+        <h3 id="overlay-title" class="text-2xl md:text-4xl font-bold text-glekk-yellow mb-4">Game Over!</h3>
+        <p id="overlay-subtitle" class="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">Score: 0</p>
+        <button id="restart-game-btn" class="glekk-btn-primary text-lg md:text-xl px-6 py-3 md:px-8 md:py-4 bg-black/50 rounded-full min-w-[120px] min-h-[48px]">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/confetti.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+
+<!-- Mirrored from glekkbird.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Oct 2025 18:30:05 GMT -->
+</html>
